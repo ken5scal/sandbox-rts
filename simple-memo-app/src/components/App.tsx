@@ -1,27 +1,23 @@
-import React, { useState } from 'react';
+import { ChangeEvent, FC, useState } from 'react';
+import { useMemoList } from '../hooks/useMemoList';
 import './App.css';
 import MemoList from './MemoList';
 
-function App() {
-
+const App: FC = () => {
+  const { memos, onAddMemo, onDeleteMemo } = useMemoList()
   const [txt, setText] = useState<string>('')
-  const [memos, setMemo] = useState<string[]>([])
 
-  const onAddMemo = () => {
-    const newMemo = [...memos]
-
-    if (!txt) {
-      return
-    }
-    newMemo.push(txt)
-    setMemo(newMemo)
+  const onAdd = () => {
+    onAddMemo(txt)
     setText('')
   }
 
-  const onRemoveMemo = (idx: number) => {
-    const newMemo = [...memos]
-    newMemo.splice(idx, 1)
-    setMemo(newMemo)
+  const OnChangeText = (e: ChangeEvent<HTMLInputElement>) => {
+    setText(e.target.value)
+  }
+
+  const onDelete = (idx: number) => {
+    onDeleteMemo(idx)
   }
 
   return (
@@ -30,12 +26,15 @@ function App() {
       <input 
         type="text"
         value={txt}
-        onChange={e => setText(e.target.value)}
+        onChange={OnChangeText}
       />
-      <button onClick={onAddMemo}>追加</button>
+      <button 
+        onClick={onAdd}>
+          追加
+      </button>
       <MemoList 
         memoLists={memos}
-        onDeleteItem={onRemoveMemo}
+        onDeleteItem={onDelete}
       />
     </div>
   );
