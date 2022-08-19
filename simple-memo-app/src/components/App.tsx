@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import MemoList from './MemoList';
 
 function App() {
 
@@ -32,19 +33,10 @@ function App() {
         onChange={e => setText(e.target.value)}
       />
       <button onClick={onAddMemo}>追加</button>
-      
-      <pre>メモ一覧</pre>
-      <ul>
-        {memos.map((memo ,idx) => 
-          <li key={idx}> 
-            {memo}
-            <button 
-              onClick={() => onRemoveMemo(idx)}>
-                削除
-            </button>
-          </li>
-        )}
-      </ul>
+      <MemoList 
+        memoLists={memos}
+        onDeleteItem={onRemoveMemo}
+      />
     </div>
   );
 }
