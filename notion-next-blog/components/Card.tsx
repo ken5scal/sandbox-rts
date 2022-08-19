@@ -5,7 +5,7 @@ import { CardProps } from "../types/types";
  
 const Card: FC<CardProps> = ({ page }) => {
   return (
-    <Link href={`/`}>
+    <Link href={`/articles/${page.slug}`}>
       <a className="flex justify-center ">
         <div className="max-w-sm rounded overflow-hidden shadow-lg w-full my-4 md:my-0 content-between grid">
           {/* image */}
