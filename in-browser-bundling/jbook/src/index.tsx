@@ -22,16 +22,15 @@ const App= () => {
     const onClick = async () => {
         if (!ref.current) return
 
-        // # transpiling
-        // const result = await ref.current.transform(input, {
-        //     loader: 'jsx',
-        //     target: 'es2015', // transpile option
-        // })
         const result = await ref.current.build({
             entryPoints: ['index.js'],
             bundle: true,
             write: false,
-            plugins: [unpkgPathPlugin()]
+            plugins: [unpkgPathPlugin()],
+            define: {
+                global: 'window',
+                'process.env.NODE_ENV': '"production"',
+            }
         })
         console.log(result)
         setCode(result.outputFiles[0].text)
