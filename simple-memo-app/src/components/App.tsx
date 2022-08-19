@@ -1,20 +1,25 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import styled from 'styled-components';
 
 function App() {
 
   const [txt, setText] = useState<string>('')
   const [memos, setMemo] = useState<string[]>([])
 
-  const onAddToMemo = () => {
+  const onAddMemo = () => {
     const newMemo = [...memos]
 
     if (!txt) {
       return
     }
     newMemo.push(txt)
+    setMemo(newMemo)
+    setText('')
+  }
+
+  const onRemoveMemo = (idx: number) => {
+    const newMemo = [...memos]
+    newMemo.splice(idx, 1)
     setMemo(newMemo)
   }
 
@@ -26,14 +31,17 @@ function App() {
         value={txt}
         onChange={e => setText(e.target.value)}
       />
-      <button onClick={onAddToMemo}>追加</button>
+      <button onClick={onAddMemo}>追加</button>
       
       <pre>メモ一覧</pre>
       <ul>
         {memos.map((memo ,idx) => 
-          <li key={idx}>
+          <li key={idx}> 
             {memo}
-            <button>削除</button>
+            <button 
+              onClick={() => onRemoveMemo(idx)}>
+                削除
+            </button>
           </li>
         )}
       </ul>
