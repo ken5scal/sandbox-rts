@@ -8,9 +8,9 @@ import { siteConfig } from "../site.config";
 import { IndexProps } from "../types/types";
 import { fetchPages } from "../utils/notion";
 import { sampleCards } from "../utils/sample";
-
+ 
 export const getStaticProps: GetStaticProps = async () => {
-  const { results } = await fetchPages();
+  const { results } = await fetchPages({});
   return {
     props: {
       pages: results ? results : [],
@@ -18,9 +18,8 @@ export const getStaticProps: GetStaticProps = async () => {
     revalidate: 10,
   };
 };
-
+ 
 const Home: NextPage<IndexProps> = ({ pages }) => {
-  console.log(pages);
   return (
     <Layout>
       <div className="pt-12">
@@ -35,5 +34,5 @@ const Home: NextPage<IndexProps> = ({ pages }) => {
     </Layout>
   );
 };
-
+ 
 export default Home;
