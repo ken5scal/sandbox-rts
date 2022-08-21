@@ -1,5 +1,10 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Notion API 
+
+- [Notion API ドキュメント](https://developers.notion.com/reference/intro)
+- [@notionhq/client](https://www.npmjs.com/package/@notionhq/client)
+
 ## Getting Started
 
 First, run the development server:
