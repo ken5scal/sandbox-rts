@@ -1,180 +1,130 @@
 export const sample = [
-    {
-        "object": "page",
-        "id": "272d099c-36bb-4fba-afc9-c5bb5894ee08",
-        "created_time": "2022-08-21T15:02:00.000Z",
-        "last_edited_time": "2022-08-21T15:02:00.000Z",
-        "created_by": {
-            "object": "user",
-            "id": "3643c108-dc2c-4c1b-8c9b-a3e540607780"
-        },
-        "last_edited_by": {
-            "object": "user",
-            "id": "3643c108-dc2c-4c1b-8c9b-a3e540607780"
-        },
-        "cover": null,
-        "icon": null,
-        "parent": {
-            "type": "database_id",
-            "database_id": "1000b556-fe85-42f9-8c1c-384bb32b0503"
-        },
-        "archived": false,
-        "properties": {
-            "tags": {
-                "id": "%3CkLc",
-                "type": "multi_select",
-                "multi_select": []
-            },
-            "created": {
-                "id": "%3FF%3Fp",
-                "type": "created_time",
-                "created_time": "2022-08-21T15:02:00.000Z"
-            },
-            "isPublic": {
-                "id": "%40IMA",
-                "type": "checkbox",
-                "checkbox": false
-            },
-            "author": {
-                "id": "NLeA",
-                "type": "rich_text",
-                "rich_text": []
-            },
-            "published": {
-                "id": "sEtd",
-                "type": "date",
-                "date": null
-            },
-            "slug": {
-                "id": "~pdN",
-                "type": "rich_text",
-                "rich_text": []
-            },
-            "name": {
-                "id": "title",
-                "type": "title",
-                "title": []
-            }
-        },
-        "url": "https://www.notion.so/272d099c36bb4fbaafc9c5bb5894ee08"
+  {
+    object: "page",
+    id: "9ab8d611-c039-4154-b6c0-ceb009a5eab9",
+    created_time: "2022-07-08T08:49:00.000Z",
+    last_edited_time: "2022-07-08T08:49:00.000Z",
+    created_by: {
+      object: "user",
+      id: "ab09c48c-2eb2-48a3-82d8-cb6b17ac9e73",
     },
-    {
-        "object": "page",
-        "id": "451c8d7b-12e7-4505-9685-435fb634f0af",
-        "created_time": "2022-08-21T15:02:00.000Z",
-        "last_edited_time": "2022-08-21T15:02:00.000Z",
-        "created_by": {
-            "object": "user",
-            "id": "3643c108-dc2c-4c1b-8c9b-a3e540607780"
-        },
-        "last_edited_by": {
-            "object": "user",
-            "id": "3643c108-dc2c-4c1b-8c9b-a3e540607780"
-        },
-        "cover": null,
-        "icon": null,
-        "parent": {
-            "type": "database_id",
-            "database_id": "1000b556-fe85-42f9-8c1c-384bb32b0503"
-        },
-        "archived": false,
-        "properties": {
-            "tags": {
-                "id": "%3CkLc",
-                "type": "multi_select",
-                "multi_select": []
-            },
-            "created": {
-                "id": "%3FF%3Fp",
-                "type": "created_time",
-                "created_time": "2022-08-21T15:02:00.000Z"
-            },
-            "isPublic": {
-                "id": "%40IMA",
-                "type": "checkbox",
-                "checkbox": false
-            },
-            "author": {
-                "id": "NLeA",
-                "type": "rich_text",
-                "rich_text": []
-            },
-            "published": {
-                "id": "sEtd",
-                "type": "date",
-                "date": null
-            },
-            "slug": {
-                "id": "~pdN",
-                "type": "rich_text",
-                "rich_text": []
-            },
-            "name": {
-                "id": "title",
-                "type": "title",
-                "title": []
-            }
-        },
-        "url": "https://www.notion.so/451c8d7b12e745059685435fb634f0af"
+    last_edited_by: {
+      object: "user",
+      id: "ab09c48c-2eb2-48a3-82d8-cb6b17ac9e73",
     },
-    {
-        "object": "page",
-        "id": "ed4ba197-3ecb-4e21-9191-7da2b7772a73",
-        "created_time": "2022-08-21T15:02:00.000Z",
-        "last_edited_time": "2022-08-21T15:02:00.000Z",
-        "created_by": {
-            "object": "user",
-            "id": "3643c108-dc2c-4c1b-8c9b-a3e540607780"
+    cover: {
+      type: "external",
+      external: {
+        url: "https://www.notion.so/images/page-cover/solid_blue.png",
+      },
+    },
+    icon: null,
+    parent: {
+      type: "database_id",
+      database_id: "6a0c1fcd-2a3e-4d19-937a-c7d73f755acf",
+    },
+    archived: false,
+    properties: {
+      isPublic: {
+        id: "%3A%7Diu",
+        type: "checkbox",
+        checkbox: true,
+      },
+      author: {
+        id: "%3FnIj",
+        type: "rich_text",
+        rich_text: [
+          {
+            type: "text",
+            text: {
+              content: "Takuma Fujimoto",
+              link: null,
+            },
+            annotations: {
+              bold: false,
+              italic: false,
+              strikethrough: false,
+              underline: false,
+              code: false,
+              color: "default",
+            },
+            plain_text: "Takuma Fujimoto",
+            href: null,
+          },
+        ],
+      },
+      slug: {
+        id: "DR%60u",
+        type: "rich_text",
+        rich_text: [
+          {
+            type: "text",
+            text: {
+              content: "blue",
+              link: null,
+            },
+            annotations: {
+              bold: false,
+              italic: false,
+              strikethrough: false,
+              underline: false,
+              code: false,
+              color: "default",
+            },
+            plain_text: "blue",
+            href: null,
+          },
+        ],
+      },
+      tags: {
+        id: "oTxG",
+        type: "multi_select",
+        multi_select: [
+          {
+            id: "a3ec9af0-f244-4bf2-b931-1eb807d6b294",
+            name: "color",
+            color: "brown",
+          },
+        ],
+      },
+      created: {
+        id: "r%40w%5B",
+        type: "created_time",
+        created_time: "2022-07-08T08:49:00.000Z",
+      },
+      published: {
+        id: "%7Bk%7Bk",
+        type: "date",
+        date: {
+          start: "2022-07-08",
+          end: null,
+          time_zone: null,
         },
-        "last_edited_by": {
-            "object": "user",
-            "id": "3643c108-dc2c-4c1b-8c9b-a3e540607780"
-        },
-        "cover": null,
-        "icon": null,
-        "parent": {
-            "type": "database_id",
-            "database_id": "1000b556-fe85-42f9-8c1c-384bb32b0503"
-        },
-        "archived": false,
-        "properties": {
-            "tags": {
-                "id": "%3CkLc",
-                "type": "multi_select",
-                "multi_select": []
+      },
+      name: {
+        id: "title",
+        type: "title",
+        title: [
+          {
+            type: "text",
+            text: {
+              content: "Blue",
+              link: null,
             },
-            "created": {
-                "id": "%3FF%3Fp",
-                "type": "created_time",
-                "created_time": "2022-08-21T15:02:00.000Z"
+            annotations: {
+              bold: false,
+              italic: false,
+              strikethrough: false,
+              underline: false,
+              code: false,
+              color: "default",
             },
-            "isPublic": {
-                "id": "%40IMA",
-                "type": "checkbox",
-                "checkbox": false
-            },
-            "author": {
-                "id": "NLeA",
-                "type": "rich_text",
-                "rich_text": []
-            },
-            "published": {
-                "id": "sEtd",
-                "type": "date",
-                "date": null
-            },
-            "slug": {
-                "id": "~pdN",
-                "type": "rich_text",
-                "rich_text": []
-            },
-            "name": {
-                "id": "title",
-                "type": "title",
-                "title": []
-            }
-        },
-        "url": "https://www.notion.so/ed4ba1973ecb4e2191917da2b7772a73"
-    }
-]
-
+            plain_text: "Blue",
+            href: null,
+          },
+        ],
+      },
+    },
+    url: "https://www.notion.so/Blue-9ab8d611c0394154b6c0ceb009a5eab9",
+  },
+];
