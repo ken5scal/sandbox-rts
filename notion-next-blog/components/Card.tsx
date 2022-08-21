@@ -3,7 +3,7 @@ import Link from "next/link";
 import React, { FC } from "react";
 import { CardProps } from "../types/types";
 import { getCover, getDate, getMultiSelect, getText } from "../utils/property";
- 
+
 const Card: FC<CardProps> = ({ page }) => {
   return (
     <Link href={`/articles/${getText(page.properties.slug.rich_text)}`}>
@@ -22,7 +22,7 @@ const Card: FC<CardProps> = ({ page }) => {
               quality={30}
             />
           </div>
- 
+
           {/* title & date*/}
           <div className="px-6 pt-4 ">
             <h2 className="text-base font-medium mb-3 ">
@@ -32,7 +32,7 @@ const Card: FC<CardProps> = ({ page }) => {
               {getDate(page.properties.published.date)}
             </p>
           </div>
- 
+
           {/* tag */}
           <div className="px-6 pb-4 ">
             {getMultiSelect(page.properties.tags.multi_select).map(
@@ -51,6 +51,5 @@ const Card: FC<CardProps> = ({ page }) => {
     </Link>
   );
 };
- 
+
 export default Card;
- 

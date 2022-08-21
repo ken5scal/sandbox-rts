@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { FC } from "react";
 import { ArticleMetaProps } from "../types/types";
- 
+
 const ArticleMeta: FC<ArticleMetaProps> = ({ page }) => {
   return (
     <>
@@ -15,7 +15,7 @@ const ArticleMeta: FC<ArticleMetaProps> = ({ page }) => {
         height={360}
         quality={50}
       />
- 
+
       {/* page name */}
       <h1 className="my-8">{page.name}</h1>
       <div className="bg-gray-100 px-6 py-4 rounded text-sm text-gray-500">
@@ -23,11 +23,11 @@ const ArticleMeta: FC<ArticleMetaProps> = ({ page }) => {
           {/* published */}
           <div className="col-span-1">Published</div>
           <div className="col-span-2">{page.published}</div>
- 
+
           {/* author */}
           <div className="col-span-1">Author</div>
           <div className="col-span-2">{page.author}</div>
- 
+
           {/* tags */}
           <div className="col-span-1">Tags</div>
           <div className="col-span-2">
@@ -41,5 +41,5 @@ const ArticleMeta: FC<ArticleMetaProps> = ({ page }) => {
     </>
   );
 };
- 
+
 export default ArticleMeta;
