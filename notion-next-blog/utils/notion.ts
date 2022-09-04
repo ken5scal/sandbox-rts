@@ -10,6 +10,37 @@ export const fetchPages = async ({
   slug?: string;
   tag?: string;
 }) => {
+
+  const response2 = await notion.pages.create({
+    "icon": {
+        "type": "emoji",
+        "emoji": "🥬"
+    },
+    "parent": {
+        "type": "database_id",
+        "database_id": "a03576498a4b4434a2cf40bcd96ded51"
+    },
+    "properties": {
+        "Name": {
+            "title": [
+                {
+                    "text": {
+                        "content": "Tuscan kale"
+                    }
+                }
+            ]
+        },
+    },
+  });
+  console.log(response2)
+
+  const response = await notion.databases.retrieve({ database_id: 'a03576498a4b4434a2cf40bcd96ded51' });
+  console.log('################## Retrieve')
+  console.log(response);
+  console.log(response.properties['interest'].select);
+  console.log(response.properties['status'].select);
+  console.log(response.properties['まとめ']);
+
   const and: any = [
     {
       property: "isPublic",
@@ -42,7 +73,10 @@ export const fetchPages = async ({
       },
     });
   }
- 
+
+  console.log('################## fetchPages')
+  console.log(and)
+
   return await notion.databases.query({
     database_id: DATABASE_ID,
     filter: {
