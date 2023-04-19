@@ -1,7 +1,9 @@
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom/client'
 import GuestList from './state/GuestList'
 import { useState } from 'react'
-import UserSearch from './state/UserSearch'
+// import UserSearch from './state/UserSearch'
+import UserSearch from './refs/UserSearch'
+import EventComponent from './events/EventComponent'
 
 const App = () => {
     const [name, setName] = useState('')
@@ -13,7 +15,8 @@ const App = () => {
 
     return (
         <>
-            <UserSearch></UserSearch>
+            <EventComponent />
+            <UserSearch/>
             <h1>Hi There!!</h1>
             <ul>
                 {guests.map((guest) => (
@@ -31,4 +34,5 @@ const App = () => {
     )
 }
 
-ReactDOM.render(<App/>, document.querySelector('#root'))
+const root = ReactDOM.createRoot(document.querySelector('#root') as HTMLElement);
+root.render(<App/>)
