@@ -1,4 +1,12 @@
 
+# Slack BoltをAWS Lambda (+ API GW）で動かす
+
+Slack Botにした場合、SlackプラットフォームがクライアントとしてBot APIを叩く。
+そのリクエストは複雑であり、且つトークンも含むため、Lambda Dockerの構成をローカルで再現したテストをするのは難しい。
+挙動を見ると、`awsLambdaReceiver` がよしなにパス等
+
+Appインスタンスに入れるポートは3000じゃないとだめそう？
+
 # Deloy to AWS Lambda
 
 $ aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin "${AWS_ACCOUNT}.dkr.ecr.ap-northeast-1.amazonaws.com"

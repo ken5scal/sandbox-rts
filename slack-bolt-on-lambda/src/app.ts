@@ -29,11 +29,11 @@ const expressReceiver = new ExpressReceiver({
 
 const app = new App({
     logLevel: logLevel,
-    port: parseInt(process.env.PORT || '3000', 10),
     token: process.env.SLACK_BOT_TOKEN,
     receiver: process.env.WORKLOAD !== 'lambda' ? expressReceiver : awsLambdaReceiver,
 });
 
+// Lambdaでなければサーバーのデーモンとして起動
 if (process.env.WORKLOAD !== 'lambda') {
     (async () => {
         logger.info('⚡️ Bolt app is running!');
@@ -53,6 +53,7 @@ app.event('app_mention', async ({ event, say }) => {
     });
 })
 
+// module.exports.handler = async (event: AwsEvent, context: any, callback: AwsCallback) => {
 module.exports.handler = async (event: AwsEvent, context: any, callback: AwsCallback) => {
     logger.info('invoked lambda handler')
     logger.debug(`Event: ${JSON.stringify(event, null, 2)}`);
