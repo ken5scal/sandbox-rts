@@ -2,15 +2,23 @@
   "name": "slack-bolt-on-lambda",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "build": "esbuild index.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "esbuild ./src/app.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "nodemon ./src/app.ts"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/aws-lambda": "^8.10.131",
-    "esbuild": "^0.19.11"
+    "@types/node": "^20.11.5",
+    "esbuild": "^0.19.11",
+    "nodemon": "^3.0.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@slack/bolt": "^3.17.1"
   }
 }

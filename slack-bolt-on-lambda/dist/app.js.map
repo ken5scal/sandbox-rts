@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/app.ts"],
+  "sourcesContent": ["import { Context, APIGatewayProxyResult, APIGatewayEvent } from 'aws-lambda';\n\n// lambda handler. Only used when called specifically as a lambda function.\nexport const handler = async (event: APIGatewayEvent, context: Context): Promise<APIGatewayProxyResult> => {\n    console.log('hogehoghohgeogheo')\n    console.log(context)\n    console.log('Context')\n    console.log(`Event: ${JSON.stringify(event, null, 2)}`);\n    console.log(`Context: ${JSON.stringify(context, null, 2)}`);\n    console.log('hogehoghohgeogheo')\n    return {\n        statusCode: 200,\n        body: JSON.stringify({\n            message: 'hello world',\n        }),\n    };\n};\n\nif (process.env.WORKLOAD !== 'lambda') {\n    (async () => {\n        console.log('\u26A1\uFE0F Bolt app is running!');\n    })().catch((error) => console.error(error));\n}\n"],
+  "mappings": "yaAAA,IAAAA,EAAA,GAAAC,EAAAD,EAAA,aAAAE,IAAA,eAAAC,EAAAH,GAGO,IAAME,EAAU,MAAOE,EAAwBC,KAClD,QAAQ,IAAI,mBAAmB,EAC/B,QAAQ,IAAIA,CAAO,EACnB,QAAQ,IAAI,SAAS,EACrB,QAAQ,IAAI,UAAU,KAAK,UAAUD,EAAO,KAAM,CAAC,CAAC,EAAE,EACtD,QAAQ,IAAI,YAAY,KAAK,UAAUC,EAAS,KAAM,CAAC,CAAC,EAAE,EAC1D,QAAQ,IAAI,mBAAmB,EACxB,CACH,WAAY,IACZ,KAAM,KAAK,UAAU,CACjB,QAAS,aACb,CAAC,CACL,GAGA,QAAQ,IAAI,WAAa,WACxB,SAAY,CACT,QAAQ,IAAI,mCAAyB,CACzC,GAAG,EAAE,MAAOC,GAAU,QAAQ,MAAMA,CAAK,CAAC",
+  "names": ["app_exports", "__export", "handler", "__toCommonJS", "event", "context", "error"]
+}
