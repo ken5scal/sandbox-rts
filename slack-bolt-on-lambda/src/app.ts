@@ -1,23 +1,67 @@
-import { Context, APIGatewayProxyResult, APIGatewayEvent } from 'aws-lambda';
+import { App, ExpressReceiver, LogLevel, AwsLambdaReceiver } from '@slack/bolt';
+import { AwsEvent, AwsCallback } from '@slack/bolt/dist/receivers/AwsLambdaReceiver';
+import { ConsoleLogger } from '@slack/logger';
 
-// lambda handler. Only used when called specifically as a lambda function.
-export const handler = async (event: APIGatewayEvent, context: Context): Promise<APIGatewayProxyResult> => {
-    console.log('hogehoghohgeogheo')
-    console.log(context)
-    console.log('Context')
-    console.log(`Event: ${JSON.stringify(event, null, 2)}`);
-    console.log(`Context: ${JSON.stringify(context, null, 2)}`);
-    console.log('hogehoghohgeogheo')
-    return {
-        statusCode: 200,
-        body: JSON.stringify({
-            message: 'hello world',
-        }),
-    };
-};
+// import { Context, APIGatewayProxyResult, APIGatewayEvent } from 'aws-lambda';
+
+let logLevel: LogLevel = LogLevel.INFO;
+if (process.env.ENV === 'local') {
+    require('dotenv').config();
+    logLevel = LogLevel.DEBUG;
+}
+
+const logger = new ConsoleLogger();
+logger.setLevel(logLevel);
+logger.setName('slack-bolt-on-lambda');
+logger.info(`running in ${process.env.ENV}`)
+
+if (process.env.SLACK_SIGNING_SECRET === '' || process.env.Slash_BOT_TOKEN === '') {
+    logger.error('SLACK_SIGNING_SECRET or SLACK_BOT_TOKEN is not set');
+    process.exit(1);
+}
+
+const awsLambdaReceiver = new AwsLambdaReceiver({
+  signingSecret: process.env.SLACK_SIGNING_SECRET || '',
+})
+
+const expressReceiver = new ExpressReceiver({
+    signingSecret: process.env.SLACK_SIGNING_SECRET || '',
+    processBeforeResponse: true,
+});
+
+const app = new App({
+    // TODO Fifx loglevel later
+    logLevel: logLevel,
+    // port: parseInt(process.env.PORT || '3000', 10),
+    token: process.env.SLACK_BOT_TOKEN,
+    // signingSecret: process.env.SLACK_SIGNING_SECRET,
+    receiver: process.env.WORKLOAD !== 'lambda' ? expressReceiver : awsLambdaReceiver,
+});
 
 if (process.env.WORKLOAD !== 'lambda') {
     (async () => {
-        console.log('⚡️ Bolt app is running!');
+        logger.info('⚡️ Bolt app is running!');
+        await app.start(process.env.PORT || 3000);
     })().catch((error) => console.error(error));
 }
+
+expressReceiver.app.get('/hc', (req, res) => {
+  res.status(200).send('OK');
+});
+
+app.event('app_mention', async ({ event, say }) => {
+    console.log(event);
+    await say({ 
+        text: `Hello world`,
+        thread_ts: event.event_ts
+    });
+})
+
+module.exports.handler = async (event, context, callback) => {
+    logger.info('invoked lambda handler')
+    logger.debug(`Event: ${JSON.stringify(event, null, 2)}`);
+    logger.debug(`Context: ${JSON.stringify(context, null, 2)}`);
+    
+    const handler = await awsLambdaReceiver.start();
+    return handler(event, context, callback);
+};
