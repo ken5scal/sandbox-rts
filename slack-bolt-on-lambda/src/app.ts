@@ -2,10 +2,8 @@ import { App, ExpressReceiver, LogLevel, AwsLambdaReceiver } from '@slack/bolt';
 import { AwsEvent, AwsCallback } from '@slack/bolt/dist/receivers/AwsLambdaReceiver';
 import { ConsoleLogger } from '@slack/logger';
 
-// import { Context, APIGatewayProxyResult, APIGatewayEvent } from 'aws-lambda';
-
 let logLevel: LogLevel = LogLevel.INFO;
-if (process.env.ENV === 'local') {
+if (process.env.ENV === 'local' || process.env.DEBUG === 'true') {
     require('dotenv').config();
     logLevel = LogLevel.DEBUG;
 }
@@ -30,11 +28,9 @@ const expressReceiver = new ExpressReceiver({
 });
 
 const app = new App({
-    // TODO Fifx loglevel later
     logLevel: logLevel,
-    // port: parseInt(process.env.PORT || '3000', 10),
+    port: parseInt(process.env.PORT || '3000', 10),
     token: process.env.SLACK_BOT_TOKEN,
-    // signingSecret: process.env.SLACK_SIGNING_SECRET,
     receiver: process.env.WORKLOAD !== 'lambda' ? expressReceiver : awsLambdaReceiver,
 });
 
@@ -57,7 +53,7 @@ app.event('app_mention', async ({ event, say }) => {
     });
 })
 
-module.exports.handler = async (event, context, callback) => {
+module.exports.handler = async (event: AwsEvent, context: any, callback: AwsCallback) => {
     logger.info('invoked lambda handler')
     logger.debug(`Event: ${JSON.stringify(event, null, 2)}`);
     logger.debug(`Context: ${JSON.stringify(context, null, 2)}`);
