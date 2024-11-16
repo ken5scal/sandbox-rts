@@ -1,0 +1,47 @@
+{
+  "name": "dynamodb-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "seed": "ts-node scripts/insertTesData.ts",
+    "cleanup-test-data": "ts-node scripts/cleanupTestData.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@shelf/jest-dynamodb": "^3.5.0",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.9.0",
+    "aws-sdk-client-mock": "^4.1.0",
+    "jest": "^29.7.0",
+    "jest-extended": "^4.0.2",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.687.0",
+    "@aws-sdk/lib-dynamodb": "^3.693.0",
+    "@aws-sdk/util-dynamodb": "^3.689.0",
+    "constructs": "^10.4.2",
+    "ulid": "^2.3.0"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/*.test.ts"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "setupFilesAfterEnv": [
+      "jest-extended"
+    ]
+  }
+}
