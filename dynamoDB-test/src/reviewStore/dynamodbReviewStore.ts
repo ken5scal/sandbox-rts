@@ -96,17 +96,17 @@ export class DynamoDBReviewStore implements ReviewStore {
       }
     });
 
-    const command = new UpdateCommand({
-      TableName: this.reviewsTable,
-      Key: { 
-        draftId: review.draftId, 
-        reviewerId: review.reviewerId,
-      },
-      UpdateExpression: `SET ${updateExpressions.join(', ')}`,
-      ExpressionAttributeNames: expressionAttributeNames,
-      ExpressionAttributeValues: expressionAttributeValues,
-      ReturnValues: 'ALL_NEW'
-    });
+    // const command = new UpdateCommand({
+    //   TableName: this.reviewsTable,
+    //   Key: { 
+    //     draftId: review.draftId, 
+    //     reviewerId: review.reviewerId,
+    //   },
+    //   UpdateExpression: `SET ${updateExpressions.join(', ')}`,
+    //   ExpressionAttributeNames: expressionAttributeNames,
+    //   ExpressionAttributeValues: expressionAttributeValues,
+    //   ReturnValues: 'ALL_NEW'
+    // });
 
     const updateItemInput: UpdateItemCommandInput = {
       TableName: this.reviewsTable,
