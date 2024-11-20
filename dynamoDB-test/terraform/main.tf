@@ -68,7 +68,6 @@ resource "aws_dynamodb_table" "reviews" {
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "draftId"
   range_key    = "reviewerId"
-
   attribute {
     name = "draftId"
     type = "S"

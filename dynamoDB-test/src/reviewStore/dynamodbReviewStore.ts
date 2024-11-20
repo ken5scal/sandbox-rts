@@ -15,7 +15,7 @@ import { marshall, unmarshall } from "@aws-sdk/util-dynamodb";
 export class DynamoDBReviewStore implements ReviewStore {
   private readonly client: DynamoDB;
   private readonly reviewsTable: string;
-  private readonly reviewerIdIndex = "reviewer_id_index";
+  private readonly reviewerIdIndex = "reviewerId_index";
 
   constructor(client: DynamoDB, table: string) {
     this.client = client;
@@ -230,34 +230,9 @@ export class DynamoDBReviewStore implements ReviewStore {
       message: input.message,
       createdAt: now
     };
-
-    const marshalledComment = marshall(newComment);
-
-    const command = new UpdateCommand({
-      TableName: this.reviewsTable,
-      Key: {
-        draftId: input.draftId,
-          reviewerId: input.reviewerId
-        },
-        UpdateExpression: 'SET #comments = list_append(#comments, :newComment), #updatedAt = :updatedAt',
-        ExpressionAttributeNames: {
-          '#comments': 'comments',
-          '#updatedAt': 'updatedAt'
-        },
-        ExpressionAttributeValues: {
-        ':newComment': [newComment],
-        ':updatedAt': now
-      },
-      ReturnValues: 'ALL_NEW'
-    });
-
     const updateItemInput: UpdateItemCommandInput = {
       TableName: this.reviewsTable,
       Key: marshall({ draftId: input.draftId, reviewerId: input.reviewerId }),
-      // Key: {
-      //   draft_id: { S: review.draft_id },
-      //   reviewer_id: { S: review.reviewer_id }
-      // },
       UpdateExpression: 'SET #comments = list_append(if_not_exists(#comments, :empty_list), :newComment), #updatedAt = :updatedAt',
       ExpressionAttributeNames: {
         '#comments': 'comments',
