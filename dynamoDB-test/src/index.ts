@@ -31,10 +31,20 @@ async function listTables(dynamoDBClient: DynamoDB): Promise<string[]> {
   console.log(foo);
   const fuga = await store.getReview('draft-123', 'reviewer-456');
   console.log(fuga);
-  const hoge = await store.createReview({
-    draftId: 'draft-123',
-    reviewerId: '456',
-    comments: [],
-  });
-  console.log(hoge);
+  // await store.createReview({
+  //   draftId: 'draft-123',
+  //   reviewerId: '456',
+  //   comments: [{
+  //     reviewerId: '4562',
+  //     message: 'hogefuga',
+  //     createdAt: new Date().toISOString(),
+  //   }],
+  // });
+
+  try {
+    const hoge = await store.getReview('draft-123', '456');
+    console.log(hoge);
+  } catch (error) {
+    console.log('error: ' + JSON.stringify(error));
+  }
 })();

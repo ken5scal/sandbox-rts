@@ -13,7 +13,6 @@ const mockDate = '2024-01-01T00:00:00.000Z';
 
 describe('DynamoDB', () => {
   let store: DynamoDBReviewStore;
-  // let mockClient: jest.Mocked<DynamoDB>;
 
   beforeEach(() => {
     jest.clearAllMocks();

@@ -44,6 +44,7 @@ export class InvalidStateError extends DatabaseError {
 }
 
 export function handleDatabaseError(error: any, resource?: string): never {
+  console.log('error: ' + JSON.stringify(error));
   if (error.name === 'ConditionalCheckFailedException') {
     throw new ResourceExistsError(resource || 'Resource');
   }

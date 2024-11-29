@@ -25,49 +25,50 @@ variable "environment" {
   default = "local"
 }
 
-resource "aws_dynamodb_table" "drafts" {
-  name         = "${var.prefix}-drafts"
-  billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "draftId"
-  # range_key    = "version"
-  attribute {
-    name = "draftId"
-    type = "S"
-  }
+# resource "aws_dynamodb_table" "drafts" {
+#   name         = "${var.prefix}-drafts"
+#   billing_mode = "PAY_PER_REQUEST"
+#   hash_key     = "draftId"
+#   # range_key    = "version"
+#   attribute {
+#     name = "draftId"
+#     type = "S"
+#   }
 
-  # attribute {
-  #   name = "version"
-  #   type = "N"
-  # }
+#   # attribute {
+#   #   name = "version"
+#   #   type = "N"
+#   # }
 
-  attribute {
-    name = "userId"
-    type = "S"
-  }
+#   attribute {
+#     name = "userId"
+#     type = "S"
+#   }
 
-  attribute {
-    name = "createdAt"
-    type = "S"
-  }
+#   attribute {
+#     name = "createdAt"
+#     type = "S"
+#   }
 
-  global_secondary_index {
-    name            = "userId_index"
-    hash_key        = "userId"
-    range_key       = "createdAt"
-    projection_type = "ALL"
-  }
+#   global_secondary_index {
+#     name            = "userId_index"
+#     hash_key        = "userId"
+#     range_key       = "createdAt"
+#     projection_type = "ALL"
+#   }
 
-  ttl {
-    attribute_name = "ttl"
-    enabled        = true
-  }
-}
+#   ttl {
+#     attribute_name = "ttl"
+#     enabled        = true
+#   }
+# }
 
 resource "aws_dynamodb_table" "reviews" {
   name         = "${var.prefix}-reviews"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "draftId"
   range_key    = "reviewerId"
+
   attribute {
     name = "draftId"
     type = "S"
